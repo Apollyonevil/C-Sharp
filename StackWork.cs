@@ -1,113 +1,112 @@
 using System;
 using System.Collections;
 
-public class Pilas
+public class Stacks
 {
     public static void Main()
     {
-        // Definimos la pila
-        Stack miPila = new Stack();
+        // Define the stack
+        Stack myStack = new Stack();
 
-        // Creamos el menú
-        Console.WriteLine("Bienvenido a la aplicación de las pilas.");
-        Console.WriteLine("\nElija una opción");
+        // Create the menu
+        Console.WriteLine("Welcome to the stack application.");
+        Console.WriteLine("\nChoose an option");
 
-        string opcion = "";
+        string option = "";
         do
         {
-            Console.WriteLine("\n-------Menú-------");
-            Console.WriteLine("1. Añadir elemento a la pila");
-            Console.WriteLine("2. Sacar elemento de la pila");
-            Console.WriteLine("3. Longitud de la pila");
-            Console.WriteLine("4. Mostrar la pila");
-            Console.WriteLine("5. Salir");
+            Console.WriteLine("\n-------Menu-------");
+            Console.WriteLine("1. Add element to the stack");
+            Console.WriteLine("2. Remove element from the stack");
+            Console.WriteLine("3. Stack length");
+            Console.WriteLine("4. Show the stack");
+            Console.WriteLine("5. Exit");
 
-            opcion = Console.ReadLine();
+            option = Console.ReadLine();
 
-            switch (opcion)
+            switch (option)
             {
                 case "1":
-                    AddPila(ref miPila);
+                    AddToStack(ref myStack);
                     break;
 
                 case "2":
-                    SacarDeLaPila(ref miPila);
+                    RemoveFromStack(ref myStack);
                     break;
 
                 case "3":
-                    LongitudPila(ref miPila);
+                    StackLength(ref myStack);
                     break;
 
                 case "4":
-                    EscribirPila(ref miPila);
+                    WriteStack(ref myStack);
                     break;
 
                 case "5":
-                    Console.WriteLine("Saliendo...");
+                    Console.WriteLine("Exiting...");
                     break;
 
                 default:
-                    Console.WriteLine("\nOpción incorrecta. Introduzca una opción entre 1 y 5");
+                    Console.WriteLine("\nIncorrect option. Please enter an option between 1 and 5");
                     break;
             }
-        } while (opcion != "5");
+        } while (option != "5");
     }
 
-    public static void LongitudPila(ref Stack pila)
+    public static void StackLength(ref Stack stack)
     {
-        Console.WriteLine("\nLongitud de la pila: " + pila.Count);
+        Console.WriteLine("\nStack length: " + stack.Count);
     }
 
-    public static void AddPila(ref Stack pila)
+    public static void AddToStack(ref Stack stack)
     {
-       if (pila.Count < 10)
-       { 
-                Console.Write("\nIngrese valor: ");
+        if (stack.Count < 10)
+        { 
+            Console.Write("\nEnter value: ");
             try
             {
-                int valor = Convert.ToInt32(Console.ReadLine());
-                pila.Push(valor);
-                EscribirPila(ref pila);
+                int value = Convert.ToInt32(Console.ReadLine());
+                stack.Push(value);
+                WriteStack(ref stack);
             }
             catch
             {
-                Console.WriteLine("Error: Solo se permiten números.");
+                Console.WriteLine("Error: Only numbers are allowed.");
             }
-        }
-            else
-        {
-            Console.WriteLine("La pila ya contiene 10 elementos. No se pueden agregar más elementos.");
-        }
-    }
-    public static void SacarDeLaPila(ref Stack pila)
-    {
-        if (pila.Count > 0)
-        {
-            int valor = (int)pila.Pop();
-            Console.WriteLine("Elemento " + valor + " eliminado");
         }
         else
         {
-            Console.WriteLine("La pila está vacía.");
+            Console.WriteLine("The stack already contains 10 elements. No more elements can be added.");
         }
-        EscribirPila(ref pila);
     }
 
-    public static void EscribirPila(ref Stack pila)
+    public static void RemoveFromStack(ref Stack stack)
     {
-        if (pila.Count > 0)
+        if (stack.Count > 0)
         {
-            Console.WriteLine("\nElementos en la pila:");
-            foreach (int dato in pila)
+            int value = (int)stack.Pop();
+            Console.WriteLine("Element " + value + " removed");
+        }
+        else
+        {
+            Console.WriteLine("The stack is empty.");
+        }
+        WriteStack(ref stack);
+    }
+
+    public static void WriteStack(ref Stack stack)
+    {
+        if (stack.Count > 0)
+        {
+            Console.WriteLine("\nElements in the stack:");
+            foreach (int item in stack)
             {
-                Console.WriteLine("| " + dato + " |");
+                Console.WriteLine("| " + item + " |");
             }
         }
         else
         {
-            Console.WriteLine("La pila está vacía.");
+            Console.WriteLine("The stack is empty.");
         }
     }
 }
-
-
